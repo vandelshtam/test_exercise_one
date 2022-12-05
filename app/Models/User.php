@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,6 +59,27 @@ class User extends Authenticatable implements JWTSubject
      */
     public $email;
 
+     /**
+     * @OA\Property(
+     *     title="first_name",
+     *     description="first Name author's user model",
+     *     example="This is new user first name"
+     * )
+     *
+     * @var string
+     */
+    private $first_name;
+
+    /**
+     * @OA\Property(
+     *      title="Last Name",
+     *      description="Last Name of the new project",
+     *      example="This is new user last name"
+     * )
+     *
+     * @var string
+     */
+    public $last_name;
 
     /**
      * @OA\Property(
@@ -109,7 +129,9 @@ class User extends Authenticatable implements JWTSubject
         'id',
         'email',
         'password',
-        'name'
+        'first_name',
+        'last_name',
+        'username'
     ];
 
     /**

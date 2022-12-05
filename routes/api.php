@@ -1,4 +1,5 @@
 <?php
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,17 +23,17 @@ Route::group([
     'middleware' => 'api',
     'namespace' => 'App\Http\Controllers'
 ], function($router){
-    // Route::post('login', ['as'=> 'login', 'uses'=> 'AuthController@login']);
-    // Route::post('register', ['as'=> 'register', 'uses'=> 'AuthController@register']);
-    //Route::post('logout', 'AuthController@logout');
-    //Route::post('refresh', 'AuthController@refresh');
+    Route::post('login', ['as'=> 'login', 'uses'=> 'AuthController@login']);
+    Route::post('register', ['as'=> 'register', 'uses'=> 'AuthController@register']);
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
     Route::get('profile', 'AuthController@profile');
 
     Route::get('users', 'UserController@index');
-    Route::post('users/store', 'UserController@store');
-    Route::post('users/register', 'UserController@register');
     Route::get('users/{id}', 'UserController@show');
-    Route::get('users/identity/{id}', 'UserController@show_identity_id');
     Route::put('users/{id}', 'UserController@update');
     Route::delete('users/{id}', 'UserController@destroy');
 });
+
+
+
