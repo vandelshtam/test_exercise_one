@@ -3,19 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Response\GeneralResponse;
-use App\Http\Controllers\UserController;
-use App\Http\Requests\UpdateUserRequest;
-use App\Http\Requests\RegisterUserRequest;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Contracts\Encryption\DecryptException;
 
