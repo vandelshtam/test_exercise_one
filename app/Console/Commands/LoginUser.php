@@ -46,30 +46,6 @@ class LoginUser extends Command
         $email = $this->argument("email");
         $password = $this->argument("password");
 
-        // if(!User::where("email", $email)->count()){
-        //     $this->info("Email not faund");
-        // }
-
-        // //$credentials = $this->argument(["email", "password"]);
-
-        // if (!$token = auth()->attempt([$email,$password])) {
-        //     $this->info("User Unauthorized");
-        // }
-        // try {
-        //     $user = auth()->userOrFail();
-        // } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
-        //     $this->info("User not faund");
-        // }
-
-        // // Get the token
-        // //$token = auth()->login($user);
-        // $auth_factory = auth()->factory()->getTTL() * 10;
-
-        // $this->info("access_token :".$token);
-        // $this->info("experies_is : ".$auth_factory);
-        // $this->info( "token_type :"." bearer");
-        // $this->info( $password);
-
         //Get some user from somewhere
         if(!User::where("email", $email)->count()){
             $this->info("User not faund");
