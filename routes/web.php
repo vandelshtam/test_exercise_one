@@ -27,16 +27,13 @@ Route::get('/users', function () {
 Route::get('/user', function () {
     return view('users.user');
 });
-Route::get('/user2', function () {
-    return view('users.user2');
-});
 Route::get('/register', function () {
     return view('users.register');
 });
 Route::get('/update', function () {
     return view('users.update');
 });
-Route::get('/allusers', function () {
-    return view('users.allusers');
+Route::get('/delete', function () {
+    return view('users.delete');
 });
-Route::get('/load', [UserController::class, "index"])->name('index');
+

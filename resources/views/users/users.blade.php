@@ -1,30 +1,6 @@
 @extends('layouts.main')
 @section('content')
     
-
-<head>
-<meta name="viewport"
-		content="width=device-width,
-				initial-scale=1,
-				shrink-to-fit=no">
-<title>
-	load data from json file
-	into a bootstrap table
-</title>
-
-<!-- Include Bootstrap for styling -->
-<link rel="stylesheet"
-		href=
-"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-<!-- Include the Bootstrap Table CSS
-for the table -->
-<link rel="stylesheet"
-		href=
-"https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
-</head>
-<body>
-	
 <div class="container">
 	<h6 class="text text-success text-center">
 		Back main page
@@ -63,11 +39,6 @@ for the table -->
 			<span class="text-success">
 				Email
 			</span>
-			</th>
-			<th data-field="">
-				<span class="text-success">
-					action
-				</span>
 			</th>
 		</tr>	
 		</thead>
@@ -119,8 +90,5 @@ for Bootstrap table -->
 			request.send();
 		}
 </script>
-
-</body>
-</html>
 
 @endsection

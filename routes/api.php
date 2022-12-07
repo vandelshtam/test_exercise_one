@@ -32,7 +32,7 @@ Route::group([
     Route::get('users', 'UserController@index');
     Route::get('users/{id}', 'UserController@show');
     Route::put('users/update/{id}', 'UserController@update');
-    Route::delete('users/{id}', 'UserController@destroy');
+    Route::delete('users/delete/{id}', 'UserController@destroy');
 });
 
 

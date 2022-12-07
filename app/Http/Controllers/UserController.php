@@ -65,125 +65,6 @@ class UserController extends Controller
         );
     }
 
-  
-     /**
-     * @OA\Post(
-     *  operationId="store",
-     *  summary="User store",
-     *  description="User store",
-     *  security={{ "bearerAuth": {} }},
-     *  tags={"Users"},
-     *      path="/users/store",
-      *      summary="Create User",
-     *      description="Returns User data",
-     *      @OA\Parameter(
-     *          name="id",
-     *          description="User id",
-     *          required=true,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *     @OA\Parameter(
-     *          name="email",
-     *          description="Email Field",
-     *          required=true,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="string"
-     *          )
-     *     ),
-     *      @OA\Parameter(
-     *          name="username",
-     *          description="Username Field",
-     *          required=true,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="string"
-     *          )
-     *     ),
-     *      @OA\Parameter(
-     *          name="firstname",
-     *          description="First Name",
-     *          required=true,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="string"
-     *          )
-     *     ),
-     *      @OA\Parameter(
-     *          name="lastname",
-     *          description="Last Name",
-     *          required=true,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="string"
-     *          )
-     *     ),
-     *     @OA\Parameter(
-     *          name="password",
-     *          description="Password",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="string"
-     *          )
-     *     ),
-     *  @OA\Parameter(
-     *          name="password2",
-     *          description="Password",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(
-     *              type="string"
-     *          )
-     *     ),
-
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/User")
-     *       ),
-     *  *      @OA\Response(
-     *          response=202,
-     *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/User")
-     *       ),
-     *      @OA\Response(
-     *          response=400,
-     *          description="Bad Request"
-     *      ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      )
-     * )
-     */
-    public function store(Request $request)
-    {
-        $request_input = $request->all();
-        if(User::where("email", $request_input['email'])->count()){
-            return (new GeneralResponse)->default_json(
-                $success=false,
-                $message= "Email is exist",
-                $data= response()->json($request_input['data']),
-                $code=Response::HTTP_INTERNAL_SERVER_ERROR
-            );
-        }
-        $user = User::create($request_input);
-        return (new GeneralResponse)->default_json(
-            $success=true,
-            $message= "Succes",
-            $data= $user,
-            $code= Response::HTTP_ACCEPTED
-        );
-    }
-
     /**
      * @OA\Get(
      *  operationId="show",
@@ -236,19 +117,8 @@ class UserController extends Controller
             $success=true,
             $message= "Succes",
             $data= [response()->json(User::find($id))->original],
-            //$code= Response::HTTP_ACCEPTED
+            $code= Response::HTTP_ACCEPTED
         );
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-     
     }
 
      /**
@@ -316,10 +186,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->update($request->validated('data'));
-        //return response()->json(['data' => $user->refresh()]);
-        
-        //$user->update($request->all());
-
+    
         return (new GeneralResponse)->default_json(
             $success=true,
             $message= "Success",
@@ -424,7 +291,7 @@ class UserController extends Controller
      *  description="User delete",
      *  security={{ "bearerAuth": {} }},
      *  tags={"Users"},
-     *      path="/users/{id}",
+     *      path="/users/delete/{id}",
      *      summary="Delete existing User",
      *      description="Deletes a record and returns no content",
      *      @OA\Parameter(
@@ -457,25 +324,23 @@ class UserController extends Controller
      */
     public function destroy(User $user, $id)
     {
-        //$user->delete();
-        //return response()->noContent();
-        //$user = User::all()->where('id', 2);
+        $user = User::find($id);
         if(!User::find($id)){
             return (new GeneralResponse)->default_json(
                 $success=false,
-                $message= "user not found",
-                $data=[],
-                $code=Response::HTTP_NO_CONTENT
-            );
+                $message= "User not deleted",
+                $data= [$user],
+                $code= Response::HTTP_ACCEPTED
+                );
         }
         $user = User::find($id);
         $user->delete();
-        //return response()->json(['data' => $user]);
+        
         return (new GeneralResponse)->default_json(
             $success=true,
-            $message= "Success",
-            $data=[],
-            $code= Response::HTTP_NO_CONTENT
+            $message= "Succes",
+            $data= [$user],
+            $code= Response::HTTP_ACCEPTED
         );
     }
     

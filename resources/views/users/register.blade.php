@@ -1,29 +1,6 @@
 @extends('layouts.main')
 @section('content')
     
-<head>
-    <meta name="viewport"
-            content="width=device-width,
-                    initial-scale=1,
-                    shrink-to-fit=no">
-    <title>
-        load data from json file
-        into a bootstrap table
-    </title>
-    
-    <!-- Include Bootstrap for styling -->
-    <link rel="stylesheet"
-            href=
-    "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
-    <!-- Include the Bootstrap Table CSS
-    for the table -->
-    <link rel="stylesheet"
-            href=
-    "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
-    </head>
-    <body>
-        
     <div class="container">
         <h6 class="text text-success text-center">
             Back main page
@@ -41,7 +18,6 @@
             <div id="btnDiv">
                 <!-- Making a text input -->
                 <input type="text" id="id" placeholder="ID">
-                <input type="text" id="token" placeholder="Token">
                 <input type="text" id="first_name" placeholder="first_name">
                 <input type="text" id="last_name" placeholder="last_name">
                 <input type="text" id="username" placeholder="username">
@@ -73,6 +49,16 @@
                     Email
                 </span>
                 </th>
+                <th data-field="message">
+                <span class="text-success">
+                    Message
+                </span>
+                </th>
+                <th data-field="success">
+                <span class="text-success">
+                    Success
+                </span>
+                </th>
             </tr>	
             </thead>
         </table>
@@ -96,9 +82,6 @@
     <script src=
     "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js">
     </script>
-    <script>
-        
-    </script>
     <script type="text/javascript">
         var head = document.getElementById('heading');
         var request = new XMLHttpRequest();
@@ -117,7 +100,7 @@
                 request.open('POST', '/api/register', true);
                 // Set the request header i.e. which type of content you are sending
                 //request.setRequestHeader("Authorization", token.value);
-                request.setRequestHeader("Content-Type", "application/json", "Authorization");
+                request.setRequestHeader("Content-Type", "application/json");
                 request.onload = function () {
                     //head.innerHTML = this.responseText;
                     // Here we convert JSON to object
@@ -132,12 +115,10 @@
                     });	
                 }
                 // Converting JSON data to string
-                var data = JSON.stringify({data:{"Authorization": token.value, "id": id.value,  "first_name": first_name.value, "last_name": last_name.value, "username": username.value, "email": email.value, "password": password.value, "password2": password2.value, "created_at": created_at.value,  "updated_at": updated_at.value, }});
+                var data = JSON.stringify({data:{"id": id.value,  "first_name": first_name.value, "last_name": last_name.value, "username": username.value, "email": email.value, "password": password.value, "password2": password2.value, "created_at": created_at.value,  "updated_at": updated_at.value, }});
                 console.log(data)
                 request.send(data);
             }
     </script>
-    
-    </body>
 
 @endsection

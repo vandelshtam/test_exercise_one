@@ -1,29 +1,6 @@
 @extends('layouts.main')
 @section('content')
     
-<head>
-    <meta name="viewport"
-            content="width=device-width,
-                    initial-scale=1,
-                    shrink-to-fit=no">
-    <title>
-        load data from json file
-        into a bootstrap table
-    </title>
-    
-    <!-- Include Bootstrap for styling -->
-    <link rel="stylesheet"
-            href=
-    "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
-    <!-- Include the Bootstrap Table CSS
-    for the table -->
-    <link rel="stylesheet"
-            href=
-    "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
-    </head>
-    <body>
-        
     <div class="container">
         <h6 class="text text-success text-center">
             Back main page
@@ -65,11 +42,6 @@
                     Email
                 </span>
                 </th>
-                <th data-field="">
-                    <span class="text-success">
-                        action
-                    </span>
-                </th>
             </tr>	
             </thead>
         </table>
@@ -93,9 +65,7 @@
     <script src=
     "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js">
     </script>
-    <script>
-        
-    </script>
+    
     <script type="text/javascript">
         var head = document.getElementById('heading');
         var request = new XMLHttpRequest();
@@ -105,8 +75,8 @@
                 let adr = id.value;
                 let api = "/api/users/";
                 let u = api+adr;
-              
                 let url = u;
+
                 request.open('GET', url, true);
                 // Set the request header i.e. which type of content you are sending
                 request.setRequestHeader('Authorization', 'Bearer ' + token.value);
@@ -128,7 +98,5 @@
                 request.send(data);
             }
     </script>
-    
-    </body>
 
 @endsection
