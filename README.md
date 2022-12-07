@@ -47,7 +47,7 @@ php artisan server
 ```
 
 ## Login with command string
-- start server
+- enter command
 ```bash
 php artisan login:user "email" "password"
 ```
