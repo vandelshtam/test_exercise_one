@@ -215,7 +215,7 @@ class AuthController extends Controller
         return (new GeneralResponse)->default_json(
             $success=true,
             $message= "Succes",
-            $data= $user,
+            $data= [$user],
             $code= Response::HTTP_ACCEPTED
         );
     }

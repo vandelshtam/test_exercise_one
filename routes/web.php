@@ -15,3 +15,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/layouts', function () {
+    return view('layouts.main');
+});
+Route::get('/main', function () {
+    return view('users.main');
+});
+Route::get('/users', function () {
+    return view('users.users');
+});
+Route::get('/user', function () {
+    return view('users.user');
+});
+Route::get('/user2', function () {
+    return view('users.user2');
+});
+Route::get('/register', function () {
+    return view('users.register');
+});
+Route::get('/update', function () {
+    return view('users.update');
+});
+Route::get('/allusers', function () {
+    return view('users.allusers');
+});
+Route::get('/load', [UserController::class, "index"])->name('index');

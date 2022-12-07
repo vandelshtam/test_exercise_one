@@ -235,7 +235,7 @@ class UserController extends Controller
         return (new GeneralResponse)->default_json(
             $success=true,
             $message= "Succes",
-            $data= response()->json(User::find($id))->original,
+            $data= [response()->json(User::find($id))->original],
             //$code= Response::HTTP_ACCEPTED
         );
     }
@@ -258,7 +258,7 @@ class UserController extends Controller
      *  description="User update",
      *  security={{ "bearerAuth": {} }},
      *  tags={"Users"},
-     *      path="/users/{id}",
+     *      path="/users/update/{id}",
      *      summary="Update existing User",
      *      description="Returns updated User data",
      *      @OA\Parameter(
@@ -323,7 +323,7 @@ class UserController extends Controller
         return (new GeneralResponse)->default_json(
             $success=true,
             $message= "Success",
-            $data= response()->json($user)->original,
+            $data= [response()->json($user)->original],
             $code= Response::HTTP_ACCEPTED
         );
     }
