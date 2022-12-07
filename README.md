@@ -12,9 +12,8 @@
 
 
 ## Applied technologies:
-### laravel-websockets:
-https://beyondco.de/docs/laravel-websockets/getting-started/introduction
-
+### JWT-auth:
+https://jwt-auth.readthedocs.io/en/develop/
 ## How to install
 - clone this project
 - install vendor laravel
