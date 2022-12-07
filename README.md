@@ -46,8 +46,12 @@ npm run build
 php artisan server
 ```
 
+## Login with command string
+- start server
+```bash
+php artisan login:user "email" "password"
+```
 ## NOTE
-
 - Default  user : <br>
 ```php
 user20@gmail.com
