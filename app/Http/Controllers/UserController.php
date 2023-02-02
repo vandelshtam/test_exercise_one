@@ -19,10 +19,10 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('jwt.auth');        
-    }
+     public function __construct()
+     {
+         $this->middleware('jwt.auth');
+     }
 
      /**
      * @OA\Get(
@@ -34,7 +34,7 @@ class UserController extends Controller
      *      path="/users",
      *      summary="Get list User",
      *      description="Returns User data",
-    
+
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -56,13 +56,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        //$this->middleware('jwt.auth');        
-        return (new GeneralResponse)->default_json(
-            $success=true,
-            $message = "Success",
-            $data= response()->json(User::all())->original,
-            $code= Response::HTTP_ACCEPTED
-        );
+
+         //$this->middleware('jwt.auth');
+         return (new GeneralResponse)->default_json(
+             $success=true,
+             $message = "Success",
+             $data= response()->json(User::all())->original,
+             $code= Response::HTTP_ACCEPTED
+         );
     }
 
     /**
@@ -112,7 +113,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
+
         return (new GeneralResponse)->default_json(
             $success=true,
             $message= "Succes",
@@ -186,7 +187,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->update($request->validated('data'));
-    
+
         return (new GeneralResponse)->default_json(
             $success=true,
             $message= "Success",
@@ -248,7 +249,7 @@ class UserController extends Controller
      */
     public function register(RegisterUserRequest $request)
     {
-        
+
         $request_input = $request->input();
         $request_input = $request->all();
                 if(User::where("email", $request_input['data']['email'])->count()){
@@ -259,8 +260,8 @@ class UserController extends Controller
                         $code=Response::HTTP_INTERNAL_SERVER_ERROR
                     );
                 }
-        
-        
+
+
         if(array_key_exists('password',  $request_input['data']) && array_key_exists('password2',  $request_input['data'])){
             if ($request_input['data']['password'] != $request_input['data']['password2']){
                 return (new GeneralResponse)->default_json(
@@ -271,10 +272,10 @@ class UserController extends Controller
                 );
             }
         }
-        
-        
+
+
         $user = User::create($request_input['data']);
-        
+
         return (new GeneralResponse)->default_json(
             $success=true,
             $message= "Succes",
@@ -283,7 +284,7 @@ class UserController extends Controller
         );
     }
 
-  
+
     /**
      * @OA\Delete(
      *  operationId="delete",
@@ -335,7 +336,7 @@ class UserController extends Controller
         }
         $user = User::find($id);
         $user->delete();
-        
+
         return (new GeneralResponse)->default_json(
             $success=true,
             $message= "Succes",
@@ -343,5 +344,46 @@ class UserController extends Controller
             $code= Response::HTTP_ACCEPTED
         );
     }
-    
+
+    // /**
+    //  * @OA\Get(
+    //  *  operationId="code",
+    //  *  summary="User code",
+    //  *  description="code",
+    //  *  tags={"Users"},
+    //  *      path="/users/code",
+    //  *      summary="Code",
+    //  *      description="Returns User data",
+
+    //  *      @OA\Response(
+    //  *          response=200,
+    //  *          description="Successful operation",
+    //  *          @OA\JsonContent(ref="#/components/schemas/User")
+    //  *       ),
+    //  *      @OA\Response(
+    //  *          response=400,
+    //  *          description="Bad Request"
+    //  *      ),
+    //  *      @OA\Response(
+    //  *          response=401,
+    //  *          description="Unauthenticated",
+    //  *      ),
+    //  *      @OA\Response(
+    //  *          response=403,
+    //  *          description="Forbidden"
+    //  *      )
+    //  * )
+    //  */
+    public function code()
+    {
+        $test = "TEST";
+        return $test;
+        // return (new GeneralResponse)->default_json(
+        //     $success=true,
+        //     $message = "Success",
+        //     $data= response()->json($test),
+        //     $code= Response::HTTP_ACCEPTED
+        // );
+    }
+
 }
